@@ -1,0 +1,7 @@
+{
+  "name": "bad-horsie-mobile",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
