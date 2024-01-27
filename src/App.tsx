@@ -1,8 +1,6 @@
 import { IonApp, IonRouterOutlet, IonSplitPane, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { Redirect, Route } from 'react-router-dom';
-import Menu from './components/Menu';
-import Page from './pages/Page';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -23,6 +21,13 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 
+import Menu from './components/Menu';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Home from './pages/Home';
+import Horses from './pages/Horses';
+import Events from './pages/Events';
+
 setupIonicReact();
 
 const App: React.FC = () => {
@@ -32,12 +37,11 @@ const App: React.FC = () => {
         <IonSplitPane contentId="main">
           <Menu />
           <IonRouterOutlet id="main">
-            <Route path="/" exact={true}>
-              <Redirect to="/folder/Inbox" />
-            </Route>
-            <Route path="/folder/:name" exact={true}>
-              <Page />
-            </Route>
+            <Route component={Login} path="/" exact={true} />
+            <Route component={Register} path="/register" exact={true} />
+            <Route component={Home} path="/home" exact={true} />
+            <Route component={Horses} path="/horses" exact={true} />
+            <Route component={Events} path="/events" exact={true} />
           </IonRouterOutlet>
         </IonSplitPane>
       </IonReactRouter>
