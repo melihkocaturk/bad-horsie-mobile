@@ -9,16 +9,16 @@ const Events: React.FC = () => {
   const [events, setEvents] = useState<any[]>([]);
   const [showToast] = useIonToast();
   const [showAlert] = useIonAlert();
+  const [present, dismiss] = useIonLoading();
   const [selectedEvent, setSelectedEvent] = useState<any>(null);
-  const editModal = useRef<HTMLIonModalElement>(null);
-  const createModal = useRef<HTMLIonModalElement>(null);
   const [id, setId] = useState<string>("");
   const [name, setName] = useState<string>("");
   const [start, setStart] = useState<string>("");
   const [end, setEnd] = useState<string>("");
   const [isError, setIsError] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
-  const [present, dismiss] = useIonLoading();
+  const editModal = useRef<HTMLIonModalElement>(null);
+  const createModal = useRef<HTMLIonModalElement>(null);
 
   useIonViewWillEnter(() => {
     const loadEvents = async () => {
