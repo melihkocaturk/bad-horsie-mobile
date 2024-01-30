@@ -214,7 +214,6 @@ const Events: React.FC = () => {
   };
 
   const doRefresh = async (event?: any) => {
-    console.log(event);
     setEvents([]);
     setLoading(true);
     const data = await getEvents();

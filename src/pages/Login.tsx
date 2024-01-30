@@ -4,8 +4,6 @@ import Logo from '../assets/logo.png';
 import Intro from '../components/Intro';
 import { Preferences } from '@capacitor/preferences';
 
-const INTRO_KEY = 'intro-seen';
-
 const Login: React.FC = () => {
   const router = useIonRouter();
   const [introSeen, setIntroSeen] = useState<boolean>(false);
@@ -17,7 +15,8 @@ const Login: React.FC = () => {
 
   useEffect(() => {
     const checkStorage = async () => {
-      const seen = await Preferences.get({ key: INTRO_KEY });
+      await Preferences.remove({ key: 'token' });
+      const seen = await Preferences.get({ key: 'intro-seen' });
       setIntroSeen(seen.value === 'true');
     };
     checkStorage();
@@ -66,7 +65,7 @@ const Login: React.FC = () => {
 
   const finishIntro = async () => {
     setIntroSeen(true);
-    Preferences.set({ key: INTRO_KEY, value: 'true' });
+    Preferences.set({ key: 'intro-seen', value: 'true' });
   };
 
   return (

@@ -20,6 +20,9 @@ const Menu: React.FC = () => {
             <IonItem className={location.pathname === '/events' ? 'selected' : ''} routerLink="/events" routerDirection="none" lines="inset" detail={false}>
               <IonLabel>Events</IonLabel>
             </IonItem>
+            <IonItem className={location.pathname === '/schedule' ? 'selected' : ''} routerLink="/schedule" routerDirection="none" lines="inset" detail={false}>
+              <IonLabel>Schedule</IonLabel>
+            </IonItem>
             <IonItem routerLink="/" routerDirection="root" lines="none" detail={false}>
               <IonLabel>Logout</IonLabel>
             </IonItem>
