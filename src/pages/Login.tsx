@@ -50,6 +50,12 @@ const Login: React.FC = () => {
 
       if (response.ok) {
         Preferences.set({ key: 'token', value: data.token });
+
+        const user = await getProfile(data.token);
+        Preferences.set({ key: 'user-name', value: user.name });
+        Preferences.set({ key: 'user-avatar', value: user.avatar });
+        Preferences.set({ key: 'user-type', value: user.type });
+
         router.push("/home", "forward");
       } else {
         setMessage(data.message);
@@ -61,6 +67,28 @@ const Login: React.FC = () => {
     }
 
     dismiss();
+  };
+
+  const getProfile = async (token: string | undefined) => {
+
+    const myHeaders = new Headers();
+    myHeaders.append("Accept", "application/json");
+    myHeaders.append("Authorization", "Bearer " + token);
+
+    const requestOptions = {
+      method: 'GET',
+      headers: myHeaders,
+    };
+
+    const url = import.meta.env.VITE_API_URL + '/profile';
+
+    try {
+      const response = await fetch(url, requestOptions);
+      const data = await response.json();
+      return data.data;
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const finishIntro = async () => {

@@ -1,5 +1,5 @@
 import { Preferences } from '@capacitor/preferences';
-import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonContent, IonHeader, IonPage, IonRefresher, IonRefresherContent, IonTitle, IonToolbar, useIonViewWillEnter } from '@ionic/react';
+import { IonButtons, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonContent, IonHeader, IonMenuButton, IonPage, IonRefresher, IonRefresherContent, IonTitle, IonToolbar, useIonViewWillEnter } from '@ionic/react';
 import React, { useState } from 'react';
 
 const Schedule: React.FC = () => {
@@ -57,7 +57,7 @@ const Schedule: React.FC = () => {
                 (
                   <IonCard key={index} color="tertiary" className="ion-margin-bottom">
                     <IonCardContent class="ion-text-center">
-                      {event.name} - <br />
+                      {event.name}<br />
                       {new Date(event.start).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} -
                       {new Date(event.end).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                     </IonCardContent>
@@ -84,6 +84,9 @@ const Schedule: React.FC = () => {
       <IonHeader>
         <IonToolbar>
           <IonTitle>Schedule</IonTitle>
+          <IonButtons slot="end">
+            <IonMenuButton />
+          </IonButtons>
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding">

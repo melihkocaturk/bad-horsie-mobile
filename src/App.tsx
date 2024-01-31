@@ -28,6 +28,7 @@ import Home from './pages/Home';
 import Horses from './pages/Horses';
 import Events from './pages/Events';
 import Schedule from './pages/Schedule';
+import Profile from './pages/Profile';
 
 setupIonicReact();
 
@@ -44,6 +45,7 @@ const App: React.FC = () => {
             <Route component={Horses} path="/horses" exact={true} />
             <Route component={Events} path="/events" exact={true} />
             <Route component={Schedule} path="/schedule" exact={true} />
+            <Route component={Profile} path="/profile" exact={true} />
           </IonRouterOutlet>
         </IonSplitPane>
       </IonReactRouter>
