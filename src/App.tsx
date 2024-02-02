@@ -24,11 +24,6 @@ import './theme/variables.css';
 import Menu from './components/Menu';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import Home from './pages/Home';
-import Horses from './pages/Horses';
-import Events from './pages/Events';
-import Schedule from './pages/Schedule';
-import Profile from './pages/Profile';
 
 setupIonicReact();
 
@@ -36,18 +31,11 @@ const App: React.FC = () => {
   return (
     <IonApp>
       <IonReactRouter>
-        <IonSplitPane contentId="main">
-          <Menu />
-          <IonRouterOutlet id="main">
-            <Route component={Login} path="/" exact={true} />
-            <Route component={Register} path="/register" exact={true} />
-            <Route component={Home} path="/home" exact={true} />
-            <Route component={Horses} path="/horses" exact={true} />
-            <Route component={Events} path="/events" exact={true} />
-            <Route component={Schedule} path="/schedule" exact={true} />
-            <Route component={Profile} path="/profile" exact={true} />
-          </IonRouterOutlet>
-        </IonSplitPane>
+        <IonRouterOutlet>
+          <Route component={Login} path="/" exact />
+          <Route component={Register} path="/register" exact />
+          <Route component={Menu} path="/app" />
+        </IonRouterOutlet>
       </IonReactRouter>
     </IonApp>
   );

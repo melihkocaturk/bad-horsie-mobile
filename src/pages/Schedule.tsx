@@ -82,7 +82,7 @@ const Schedule: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
-        <IonToolbar>
+        <IonToolbar color={'light'}>
           <IonTitle>Schedule</IonTitle>
           <IonButtons slot="end">
             <IonMenuButton />

@@ -11,7 +11,7 @@ const Events: React.FC = () => {
   const [showAlert] = useIonAlert();
   const [present, dismiss] = useIonLoading();
   const [selectedEvent, setSelectedEvent] = useState<any>(null);
-  const [id, setId] = useState<string>("");
+  const [id, setId] = useState<number | null>(null);
   const [name, setName] = useState<string>("");
   const [start, setStart] = useState<string>("");
   const [end, setEnd] = useState<string>("");

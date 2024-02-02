@@ -16,6 +16,9 @@ const Login: React.FC = () => {
   useEffect(() => {
     const checkStorage = async () => {
       await Preferences.remove({ key: 'token' });
+      await Preferences.remove({ key: 'user-avatar' });
+      await Preferences.remove({ key: 'user-name' });
+      await Preferences.remove({ key: 'user-type' });
       const seen = await Preferences.get({ key: 'intro-seen' });
       setIntroSeen(seen.value === 'true');
     };
@@ -52,11 +55,12 @@ const Login: React.FC = () => {
         Preferences.set({ key: 'token', value: data.token });
 
         const user = await getProfile(data.token);
+        // console.log(data.token);
         Preferences.set({ key: 'user-name', value: user.name });
         Preferences.set({ key: 'user-avatar', value: user.avatar });
         Preferences.set({ key: 'user-type', value: user.type });
 
-        router.push("/home", "forward");
+        router.push("/app/home", "forward");
       } else {
         setMessage(data.message);
         setIsError(true);

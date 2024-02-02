@@ -133,7 +133,7 @@ const Profile: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
-        <IonToolbar>
+        <IonToolbar color={'light'}>
           <IonTitle>Profile Information</IonTitle>
           <IonButtons slot="end">
             <IonMenuButton />

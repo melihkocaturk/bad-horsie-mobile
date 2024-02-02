@@ -13,7 +13,7 @@ const Horses: React.FC = () => {
   const [present, dismiss] = useIonLoading();
   const [selectedHorse, setSelectedHorse] = useState<any>(null);
   const [editHorse, setEditHorse] = useState<boolean>(false);
-  const [id, setId] = useState<string>("");
+  const [id, setId] = useState<number | null>(null);
   const [name, setName] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [avatar, setAvatar] = useState<any>(null);
