@@ -12,6 +12,7 @@ import Schedule from '../pages/Schedule';
 import Profile from '../pages/Profile';
 import StudentLessons from '../pages/StudentLessons';
 import TrainerLessons from '../pages/TrainerLessons';
+import Clubs from '../pages/Clubs';
 
 const Menu: React.FC = () => {
   const location = useLocation();
@@ -64,6 +65,12 @@ const Menu: React.FC = () => {
                       <IonLabel>Lessons</IonLabel>
                     </IonItem>
                   </>
+                  || userType === 'executive' &&
+                  <>
+                    <IonItem className={location.pathname === '/app/clubs' ? 'selected' : ''} routerLink="/app/clubs" routerDirection="none" lines="none" detail={false}>
+                      <IonLabel>Clubs</IonLabel>
+                    </IonItem>
+                  </>
                 }
                 <IonItem className={location.pathname === '/app/events' ? 'selected' : ''} routerLink="/app/events" routerDirection="none" lines="none" detail={false}>
                   <IonLabel>Events</IonLabel>
@@ -93,6 +100,7 @@ const Menu: React.FC = () => {
           <Route component={Profile} path="/app/profile" exact={true} />
           <Route component={StudentLessons} path="/app/student/lessons" exact={true} />
           <Route component={TrainerLessons} path="/app/trainer/lessons" exact={true} />
+          <Route component={Clubs} path="/app/clubs" exact={true} />
         </IonRouterOutlet>
       </IonSplitPane>
     </IonPage>

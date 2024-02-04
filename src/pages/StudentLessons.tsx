@@ -15,11 +15,11 @@ const StudentLessons: React.FC = () => {
   const showModal = useRef<HTMLIonModalElement>(null);
 
   useIonViewWillEnter(() => {
-    const loadEvents = async () => {
+    const loadLessons = async () => {
       const data = await getLessons();
       setLessons(data);
     };
-    loadEvents();
+    loadLessons();
     setLoading(false);
   });
 

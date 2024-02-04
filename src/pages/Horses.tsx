@@ -303,7 +303,9 @@ const Horses: React.FC = () => {
           ))}
         {horses.map((horse, index) => (
           <IonCard button={true} key={index} onClick={() => selectHorse(horse)}>
-            <img alt={horse.name} src={horse.avatar} />
+            <div style={{ textAlign: 'center' }}>
+              <img alt={horse.name} src={horse.avatar} />
+            </div>
             <IonCardHeader>
               <IonCardTitle>{horse.name}</IonCardTitle>
             </IonCardHeader>
@@ -330,11 +332,11 @@ const Horses: React.FC = () => {
                 <IonCardSubtitle>{selectedHorse?.description}</IonCardSubtitle>
               </IonCardHeader>
               <IonCardContent>
-                <b>Gender:</b> {getHorseGenderByKey(selectedHorse?.gender)}<br/>
-                <b>Race:</b> {selectedHorse?.race}<br/>
-                <b>Color:</b> {selectedHorse?.color}<br/>
-                <b>Height:</b> {selectedHorse?.height}<br/>
-                <b>FEI ID:</b> {selectedHorse?.fei_id}<br/>
+                <b>Gender:</b> {getHorseGenderByKey(selectedHorse?.gender)}<br />
+                <b>Race:</b> {selectedHorse?.race}<br />
+                <b>Color:</b> {selectedHorse?.color}<br />
+                <b>Height:</b> {selectedHorse?.height}<br />
+                <b>FEI ID:</b> {selectedHorse?.fei_id}<br />
                 <IonButton type="button" color={'primary'} size="default" className="ion-float-right ion-margin-bottom" onClick={() => setEditHorse(true)}>Edit</IonButton>
               </IonCardContent>
             </IonCard>
