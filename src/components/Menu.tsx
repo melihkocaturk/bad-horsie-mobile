@@ -13,6 +13,9 @@ import Profile from '../pages/Profile';
 import StudentLessons from '../pages/StudentLessons';
 import TrainerLessons from '../pages/TrainerLessons';
 import Clubs from '../pages/Clubs';
+import Members from '../pages/Members';
+import Lessons from '../pages/Lessons';
+import ClubHorses from '../pages/ClubHorses';
 
 const Menu: React.FC = () => {
   const location = useLocation();
@@ -101,6 +104,9 @@ const Menu: React.FC = () => {
           <Route component={StudentLessons} path="/app/student/lessons" exact={true} />
           <Route component={TrainerLessons} path="/app/trainer/lessons" exact={true} />
           <Route component={Clubs} path="/app/clubs" exact={true} />
+          <Route component={Members} path="/app/club/:id/members" exact={true} />
+          <Route component={Lessons} path="/app/club/:id/lessons" exact={true} />
+          <Route component={ClubHorses} path="/app/club/:id/horses" exact={true} />
         </IonRouterOutlet>
       </IonSplitPane>
     </IonPage>

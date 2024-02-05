@@ -1,6 +1,6 @@
 import { Preferences } from '@capacitor/preferences';
 import { IonAlert, IonButton, IonButtons, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonContent, IonHeader, IonIcon, IonMenuButton, IonModal, IonPage, IonRefresher, IonRefresherContent, IonSkeletonText, IonTitle, IonToolbar, useIonLoading, useIonToast, useIonViewWillEnter } from '@ionic/react';
-import { closeOutline, checkmarkCircle, checkmarkOutline } from 'ionicons/icons';
+import { closeOutline, checkmarkCircle, checkmarkOutline, closeCircle } from 'ionicons/icons';
 import React, { useRef, useState } from 'react';
 
 const StudentLessons: React.FC = () => {
@@ -181,7 +181,7 @@ const StudentLessons: React.FC = () => {
                 <b>Start:</b> {new Date(selectedLesson?.start).toLocaleDateString([], { hour: '2-digit', minute: '2-digit' })}<br />
                 <b>End:</b> {new Date(selectedLesson?.end).toLocaleDateString([], { hour: '2-digit', minute: '2-digit' })}<br />
                 <b>Confirmation:</b> {selectedLesson?.student_confirmation == 1 && (<IonIcon icon={checkmarkCircle} color="success"></IonIcon>)}<br />
-                <b>Trainer:</b> {selectedLesson?.trainer.name} {selectedLesson?.trainer_confirmation == 1 && (<IonIcon icon={checkmarkCircle} color="success"></IonIcon>)}<br />
+                <b>Trainer:</b> {selectedLesson?.trainer.name} {selectedLesson?.trainer_confirmation == 0 && (<IonIcon icon={closeCircle} color="danger"></IonIcon>) || selectedLesson?.trainer_confirmation == 1 && (<IonIcon icon={checkmarkCircle} color="success"></IonIcon>)}<br />
                 <b>Reason For Reject:</b> {selectedLesson?.reason_for_reject}<br />
                 <b>Grade:</b> {selectedLesson?.grade}<br />
                 <b>Comment:</b> {selectedLesson?.comment}<br />

@@ -1,11 +1,12 @@
 import { Camera, CameraResultType } from '@capacitor/camera';
 import { Preferences } from '@capacitor/preferences';
-import { IonAlert, IonButton, IonButtons, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonChip, IonContent, IonFab, IonFabButton, IonHeader, IonIcon, IonInput, IonItem, IonLabel, IonList, IonMenuButton, IonModal, IonPage, IonRefresher, IonRefresherContent, IonSelect, IonSelectOption, IonSkeletonText, IonTextarea, IonThumbnail, IonTitle, IonToolbar, useIonAlert, useIonLoading, useIonToast, useIonViewWillEnter } from '@ionic/react';
-import { add, camera, closeOutline } from 'ionicons/icons';
+import { IonAlert, IonButton, IonButtons, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonChip, IonContent, IonFab, IonFabButton, IonHeader, IonIcon, IonInput, IonItem, IonLabel, IonList, IonMenuButton, IonModal, IonPage, IonRefresher, IonRefresherContent, IonSelect, IonSelectOption, IonSkeletonText, IonTextarea, IonThumbnail, IonTitle, IonToolbar, useIonAlert, useIonLoading, useIonRouter, useIonToast, useIonViewWillEnter } from '@ionic/react';
+import { add, bookmark, camera, closeOutline, colorFill, magnet, person } from 'ionicons/icons';
 import React, { useRef, useState } from 'react';
 import { JSX } from 'react/jsx-runtime';
 
 const Clubs: React.FC = () => {
+  const router = useIonRouter();
   const [loading, setLoading] = useState<boolean>(true);
   const [clubs, setClubs] = useState<any[]>([]);
   const [clubTags, setClubTags] = useState<any[]>([]);
@@ -44,6 +45,7 @@ const Clubs: React.FC = () => {
       setClubTags(data);
     };
     loadTags();
+
     setLoading(false);
   });
 
@@ -335,6 +337,24 @@ const Clubs: React.FC = () => {
     }
   };
 
+  const goMembers = (club: any) => {
+    showModal.current?.dismiss();
+    const url = `/app/club/${club.id}/members`;
+    router.push(url, "forward");
+  }
+
+  const goLessons = (club: any) => {
+    showModal.current?.dismiss();
+    const url = `/app/club/${club.id}/lessons`;
+    router.push(url, "forward");
+  }
+
+  const goHorses = (club: any) => {
+    showModal.current?.dismiss();
+    const url = `/app/club/${club.id}/horses`;
+    router.push(url, "forward");
+  }
+
   return (
     <IonPage>
       <IonHeader>
@@ -389,6 +409,19 @@ const Clubs: React.FC = () => {
             </IonToolbar>
           </IonHeader>
           <IonContent className="ion-padding ion-margin-bottom">
+            <IonToolbar>
+              <IonButtons slot="secondary">
+                <IonButton onClick={() => goMembers(selectedClub)}>
+                  <IonIcon slot="icon-only" icon={person} color="primary"></IonIcon>
+                </IonButton>
+                <IonButton onClick={() => goLessons(selectedClub)}>
+                  <IonIcon slot="icon-only" icon={bookmark} color="primary"></IonIcon>
+                </IonButton>
+                <IonButton onClick={() => goHorses(selectedClub)}>
+                  <IonIcon slot="icon-only" icon={magnet} color="primary"></IonIcon>
+                </IonButton>
+              </IonButtons>
+            </IonToolbar>
             <IonCard>
               <img alt={selectedClub?.name} src={selectedClub?.banner} />
               <IonCardHeader>
