@@ -20,7 +20,8 @@ const Login: React.FC = () => {
       await Preferences.remove({ key: 'user-name' });
       await Preferences.remove({ key: 'user-type' });
       const seen = await Preferences.get({ key: 'intro-seen' });
-      setIntroSeen(seen.value === 'true');
+      // setIntroSeen(seen.value === 'true');
+      setIntroSeen(true);
     };
     checkStorage();
   }, []);

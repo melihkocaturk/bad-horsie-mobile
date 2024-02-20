@@ -12,7 +12,7 @@ const Intro: React.FC<ContainerProps> = ({ onFinish }) => {
   return (
     <IonContent>
       <video src={Welcome} autoPlay={true} loop muted />
-      <IonButton color={'light'} onClick={() => onFinish()}>ENTER</IonButton>
+      <IonButton color={'light'} onClick={() => onFinish()} className='intro-enter-button'>ENTER</IonButton>
     </IonContent>
   );
 };
