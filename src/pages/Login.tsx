@@ -1,12 +1,10 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonInput, IonList, IonItem, IonButton, useIonRouter, useIonLoading, IonAlert } from '@ionic/react';
 import React, { useEffect, useState } from 'react';
 import Logo from '../assets/logo.png';
-import Intro from '../components/Intro';
 import { Preferences } from '@capacitor/preferences';
 
 const Login: React.FC = () => {
   const router = useIonRouter();
-  const [introSeen, setIntroSeen] = useState<boolean>(false);
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [isError, setIsError] = useState<boolean>(false);
@@ -19,9 +17,6 @@ const Login: React.FC = () => {
       await Preferences.remove({ key: 'user-avatar' });
       await Preferences.remove({ key: 'user-name' });
       await Preferences.remove({ key: 'user-type' });
-      const seen = await Preferences.get({ key: 'intro-seen' });
-      // setIntroSeen(seen.value === 'true');
-      setIntroSeen(true);
     };
     checkStorage();
   }, []);
@@ -96,54 +91,42 @@ const Login: React.FC = () => {
     }
   };
 
-  const finishIntro = async () => {
-    setIntroSeen(true);
-    Preferences.set({ key: 'intro-seen', value: 'true' });
-  };
-
   return (
-    <>
-      {!introSeen ? (
-        <Intro onFinish={finishIntro} />
-      ) : (
+    <IonPage>
+      <IonHeader>
+        <IonToolbar color={'light'}>
+          <IonTitle>Login</IonTitle>
+        </IonToolbar>
+      </IonHeader>
+      <IonContent className="ion-padding ion-text-center" scrollY={false}>
+        <IonAlert
+          isOpen={isError}
+          onDidDismiss={() => setIsError(false)}
+          header={"Error!"}
+          message={message}
+          buttons={["Dismiss"]}
+        />
 
-        <IonPage>
-          <IonHeader>
-            <IonToolbar color={'light'}>
-              <IonTitle>Login</IonTitle>
-            </IonToolbar>
-          </IonHeader>
-          <IonContent className="ion-padding ion-text-center" scrollY={false}>
-            <IonAlert
-              isOpen={isError}
-              onDidDismiss={() => setIsError(false)}
-              header={"Error!"}
-              message={message}
-              buttons={["Dismiss"]}
-            />
+        <div className="ion-text-center ion-padding">
+          <img src={Logo} alt="AtClub App" width={'90%'}></img>
+        </div>
 
-            <div className="ion-text-center ion-padding">
-              <img src={Logo} alt="AtClub App" width={'90%'}></img>
-            </div>
-
-            <form onSubmit={doLogin}>
-              <IonList>
-                <IonItem lines="full">
-                  <IonInput label="Email" labelPlacement="floating" type="email" value={email} onIonChange={(e) => setEmail(e.detail.value!)}></IonInput>
-                </IonItem>
-                <IonItem lines="full">
-                  <IonInput label="Password" labelPlacement="floating" type="password" value={password} onIonChange={(e) => setPassword(e.detail.value!)}></IonInput>
-                </IonItem>
-              </IonList>
-              <IonButton type="submit" color={'primary'} expand="block" className="ion-padding">Login</IonButton>
-              <p style={{ fontSize: "medium" }}>
-                Don't have an account? <a href="/register">Sign up!</a>
-              </p>
-            </form>
-          </IonContent>
-        </IonPage>
-      )}
-    </>
+        <form onSubmit={doLogin}>
+          <IonList>
+            <IonItem lines="full">
+              <IonInput label="Email" labelPlacement="floating" type="email" value={email} onIonChange={(e) => setEmail(e.detail.value!)}></IonInput>
+            </IonItem>
+            <IonItem lines="full">
+              <IonInput label="Password" labelPlacement="floating" type="password" value={password} onIonChange={(e) => setPassword(e.detail.value!)}></IonInput>
+            </IonItem>
+          </IonList>
+          <IonButton type="submit" color={'primary'} expand="block" className="ion-padding">Login</IonButton>
+          <p style={{ fontSize: "medium" }}>
+            Don't have an account? <a href="/register">Sign up!</a>
+          </p>
+        </form>
+      </IonContent>
+    </IonPage>
   );
 };
 
